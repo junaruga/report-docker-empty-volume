@@ -11,6 +11,9 @@ build:
     - docker --version
     - docker info
     # Test.
+    - ls tests/foo.txt
     - docker pull multiarch/ubuntu-debootstrap:arm64-bionic
     - docker run --rm -t multiarch/ubuntu-debootstrap:arm64-bionic uname -m
+    # No files under tests directory
     - docker run --rm -t -w /build -v "$(pwd)/tests:/build/tests" multiarch/ubuntu-debootstrap:arm64-bionic ls -lR
+    - docker run --rm -t -w /build -v "$(pwd)/tests/foo.txt:/build/tests/foo.txt" multiarch/ubuntu-debootstrap:arm64-bionic ls -lR
