@@ -1,0 +1,8 @@
+dist: xenial
+language: bash
+services: docker
+matrix:
+  include:
+    - env: IMAGE=ubuntu
+script:
+  - ./sample.sh
