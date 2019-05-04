@@ -1,0 +1,16 @@
+language: none
+matrix:
+  include:
+    - nodePool: shippable_shared_aarch64
+build:
+  ci:
+    # Show environment.
+    - uname -a
+    - id
+    - pwd
+    - docker --version
+    - docker info
+    # Test.
+    - docker pull multiarch/ubuntu-debootstrap:arm64-bionic
+    - docker run --rm -t multiarch/ubuntu-debootstrap:arm64-bionic uname -m
+    - docker run --rm -t -w /build -v "$(pwd)/tests:/build/tests" multiarch/ubuntu-debootstrap:arm64-bionic ls -lR
